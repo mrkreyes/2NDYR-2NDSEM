@@ -1,0 +1,66 @@
+
+# WEEK 5
+## HANDOUT 5 
+
+mysql -u scott scot -p
+pw: tiger
+
+or
+
+mysql -u scott scot -ptiger
+show databases;
+
+USE scott;
+SHOW tables;
+DESC emp;
+DESCRIBE emp;
+
+SELECT * FROM emp;
+SELECT empno, ename FROM emp;
+SELECT empno AS "Employee Number", ename AS "Employee Name" FROM emp;
+
+SELECT CONCAT(ename, job) FROM emp;
+SELECT CONCAT(ename, "\'s job is a ", job) FROM emp;
+
+SELECT *, sal*12 FROM emp;
+SELECT sal*12 AS "Annual Income" FROM emp;
+
+SELECT * FROM emp ORDER BY ename;
+SELECT * FROM emp ORDER BY ename DESC; //descending
+SELECT * FROM emp ORDER BY deptno, ename;
+SELECT * FROM emp ORDER BY deptno, ename DESC;
+
+SELECT DISTINCT empno, deptno FROM emp;
+
+SELECT * FROM emp where deptno=10;
+SELECT * FROM emp where ename='ford;
+SELECT * FROM emp where deptno=10 ORDER BY ename;
+
+SELECT * FROM emp WHERE sal > 1000 AND sal < 2000;
+SELECT * FROM emp WHERE sal <> 1000 //<> SAME AS !=(?)
+
+SELECT empno, ename FROM emp ORDER BY hiredate;
+
+SELECT * FROM emp WHERE sal BETWEEN 1000 AND 2000; // inclusive
+
+SELECT * FROM emp WHERE deptno = 10 OR deptno = 20;
+SELECT * FROM emp WHERE deptno IN (10,20); // not a range
+SELECT * FROM emp WHERE deptno NOT IN (10,20);
+
+SELECT * FROM emp WHERE ename LIKE 'A%'; // first letter
+SELECT * FROM emp WHERE ename LIKE '%A'; // last letter
+SELECT * FROM emp WHERE ename LIKE '%A%'; // have that letter in  the name
+
+SELECT * FROM emp WHERE ename LIKE '\_';
+
+SELECT * FROM emp WHERE comm IS NULL;
+SELECT * FROM emp WHERE comm IS NOT NULL;
+
+## TRY THIS!
+
+1. SELECT empno, ename, hiredate FROM emp WHERE hiredate LIKE "%-02-%" ORDER BY ename;
+2. SELECT * FROM emp WHERE hiredate BETWEEN '1985-01-01' AND '1990-12-31';
+or SELECT * FROM emp WHERE YEAR(hiredate) BETWEEN 1985 and 1990; // better option
+
+
+
