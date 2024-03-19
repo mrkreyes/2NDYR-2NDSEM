@@ -1,0 +1,5 @@
+file a.out
+set disassembly-flavor intel
+b*exit_here
+r
+x/g &quo

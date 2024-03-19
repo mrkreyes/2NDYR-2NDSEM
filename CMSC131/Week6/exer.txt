@@ -1,0 +1,49 @@
+
+
+global _start
+
+section .data
+    SYS_EXIT equ 60
+    dividend dq 123456789
+    divisor dq 54321
+    quo dq 0
+
+section .text
+
+_start:
+    mov rdi, [dividend] ; Load the dividend into rdi
+    mov rsi, [divisor]  ; Load the divisor into rsi
+    lea rdx, [quo]      ; Load the address of quo into rdx
+    call divide
+
+    ; Prepare to exit
+exit_here:
+    mov rax, SYS_EXIT
+    mov rdi, 0          ; Zero rdi explicitly
+    syscall
+
+; Function: divide
+; Description: Divides rdi by rsi using repeated subtraction and stores the result at the address in rdx.
+divide:
+    mov rcx, 0 ; Clear rcx by moving 0 into it instead of using xor
+    mov rax, rdi ; Load dividend into rax
+    mov rdi, rsi ; Load divisor into rdi for comparisons
+
+    ; Ensure divisor is not zero (could add more robust handling here)
+    cmp rdi, 0
+    je .exit_divide
+
+.repeat_subtraction:
+    cmp rax, rdi ; Compare remaining dividend with divisor
+    jb .done ; If less, division is complete
+    sub rax, rdi ; Subtract divisor from remaining dividend
+    add rcx, 1 ; Increment quotient
+
+    jmp .repeat_subtraction
+
+.done:
+    mov rax, rcx ; Move the quotient result into rax
+    mov [rdx], rax ; Store the result in the location pointed to by rdx
+
+.exit_divide:
+    ret

@@ -1,0 +1,28 @@
+global _start
+global divide
+
+section .data
+    SYS_EXIT equ 60
+    dividend dq 123456789
+    divisor dq 54321
+    quo dq 0
+
+section .text
+_start:
+    mov rdi, qword[dividend] ;place the 1st arg to rdi
+    mov rsi, qword[divisor]  ;place the 2nd arg to rsi
+    mov rdx, qword[quo]      ;place the 3rd argh to rdx
+    call divide
+
+exit_here:
+    mov rax, SYS_EXIT
+    xor rdi, rdi
+    syscall
+
+divide:
+    mov rax, rdi
+    sub rax, rsi
+    ret
+
+
+
