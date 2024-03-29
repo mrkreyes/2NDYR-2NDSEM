@@ -1,0 +1,20 @@
+[
+    {
+        "stdnum": 1001,
+        "fname": "John",
+        "lname": "Doe",
+        "age": 20
+      },
+      {
+        "stdnum": 1002,
+        "fname": "Jane",
+        "lname": "Smith",
+        "age": 22
+      },
+      {
+        "stdnum": 1003,
+        "fname": "Alice",
+        "lname": "Johnson",
+        "age": 21
+      }
+]
