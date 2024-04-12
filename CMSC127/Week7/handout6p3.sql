@@ -123,3 +123,10 @@ SELECT p.patientid "Patient ID", p.lname "LAST NAME", p.fname "FIRST NAME", COUN
   LEFT JOIN appointment a ON p.patientid = a.patientid
   GROUP BY p.patientid
   ORDER BY p.lname;
+
+SELECT p.patientid "Patient ID", p.lname "LAST NAME", p.fname "FIRST NAME", COUNT(appointmentid) "APPOINTMENTS" FROM patient p
+  LEFT JOIN appointment a ON p.patientid = a.patientid
+  GROUP BY p.patientid
+  ORDER BY p.lname;
+
+SELECT * FROM patient JOIN appointment;
